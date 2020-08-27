@@ -1,0 +1,21 @@
+- hosts: all
+  tasks:
+    - name: Ansible'dan centOS'a kopyala
+      copy:
+        src: /etc/ansible/centos7-healthcheck/healthcheck.sh
+        dest: /tmp/healthcheck.sh
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: 0644
+
+    - name: Dosyaya izinver
+      shell: chmod +x /tmp/healthcheck.sh
+
+    - name: Dosyayi calistir
+      shell: bash /tmp/healthcheck.sh > /tmp/report.csv
+
+    - name: Raporu ansible makinesine kopyala
+      fetch:
+        src: /tmp/report.csv
+        dest: /etc/ansible/centos7-healthcheck/report/{{ ansible_hostname }}-{{ ansible_host }}-report.csv
+        flat: yes

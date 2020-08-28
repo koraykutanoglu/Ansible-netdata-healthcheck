@@ -4,20 +4,20 @@
       become: true
       get_url:
         url: https://raw.githubusercontent.com/netdata/netdata/master/packaging/installer/netdata-uninstaller.sh
-        dest: /etc
+        dest: /tmp
 
     - name: izin tanımlaması yapılıyor
       file:
-        path: /etc/netdata-uninstaller.sh
+        path: /tmp/netdata-uninstaller.sh
         owner: root
         group: root
         mode: '0777'
 
     - name: kaldırma sağlanıyor
       become: true
-      shell: /etc/netdata-uninstaller.sh --yes --force --env /opt/netdata/etc/netdata/.environment
+      shell: /tmp/netdata-uninstaller.sh --yes --force --env /opt/netdata/etc/netdata/.environment
 
     - name: indirilen dosya siliniyor
       file:
-        path: /etc/netdata-uninstaller.sh
+        path: /tmp/netdata-uninstaller.sh
         state: absent

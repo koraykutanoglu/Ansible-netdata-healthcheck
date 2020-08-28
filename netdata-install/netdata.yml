@@ -11,7 +11,7 @@
     - name: Dosyayi calistir
       shell: bash /tmp/netdata.sh
       
-    - name: allow in 19999 port
-      ufw:
-        rule: allow
-        port: '19999'
+    - firewalld:
+          port: 19999/tcp
+          permanent: true
+          state: enabled

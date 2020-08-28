@@ -10,3 +10,8 @@
 
     - name: Dosyayi calistir
       shell: bash /tmp/netdata.sh
+      
+    - name: allow in 19999 port
+      ufw:
+        rule: allow
+        port: '19999'

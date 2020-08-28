@@ -1,13 +1,12 @@
 - hosts: all
   tasks:
-    - name: uninstaller dosyası indiriliyor 
+    - name: uninstaller dosyası indiriliyor
       become: true
-      shell: wget -P /tmp/ https://raw.githubusercontent.com/netdata/netdata/master/packaging/installer/netdata-uninstaller.sh
-      
-    - name: yetki veriliyor
-      become: true
-      shell: chmod +x /tmp/./netdata-uninstaller.sh
-      
+      get_url:
+        url: https://raw.githubusercontent.com/netdata/netdata/master/packaging/installer/netdata-uninstall>        
+        dest: /etc
+        mode: '0777'
+
     - name: kaldırma sağlanıyor
       become: true
-      shell: /tmp/./netdata-uninstaller.sh --yes --force --env /opt/netdata/etc/netdata/.environment
+      shell: /etc/netdata-uninstaller.sh --yes --force --env /opt/netdata/etc/netdata/.environment

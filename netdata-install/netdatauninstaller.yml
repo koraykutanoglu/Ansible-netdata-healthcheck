@@ -16,3 +16,8 @@
     - name: kaldırma sağlanıyor
       become: true
       shell: /etc/netdata-uninstaller.sh --yes --force --env /opt/netdata/etc/netdata/.environment
+
+    - name: indirilen dosya siliniyor
+      file:
+        path: /etc/netdata-uninstaller.sh
+        state: absent

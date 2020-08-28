@@ -8,4 +8,6 @@
       become: true
       shell: chmod +x /tmp/./netdata-uninstaller.sh
       
-      
+    - name: kaldırma sağlanıyor
+      become: true
+      shell: /tmp/./netdata-uninstaller.sh --yes --force --env /opt/netdata/etc/netdata/.environment

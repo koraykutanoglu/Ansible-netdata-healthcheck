@@ -3,7 +3,7 @@
     - name: uninstaller dosyası indiriliyor
       become: true
       get_url:
-        url: https://raw.githubusercontent.com/netdata/netdata/master/packaging/installer/netdata-uninstall>        
+        url: https://raw.githubusercontent.com/netdata/netdata/master/packaging/installer/netdata-uninstaller.sh        
         dest: /etc
         mode: '0777'
 

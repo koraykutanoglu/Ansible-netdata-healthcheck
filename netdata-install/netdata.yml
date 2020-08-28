@@ -2,7 +2,7 @@
   tasks:
     - name: Ansible'dan centOS'a kopyala
       copy:
-        src: /etc/ansible/netdata-install/netdata.sh
+        src: /etc/ansible/roles/netdata-install/netdata.sh
         dest: /tmp/netdata.sh
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"

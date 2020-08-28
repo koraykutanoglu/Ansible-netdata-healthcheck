@@ -1,0 +1,17 @@
+- hosts: all
+  tasks:
+    - name: uninstaller dosyası indiriliyor
+      become: true
+      get_url:
+        url: https://raw.githubusercontent.com/netdata/netdata/master/packaging/installer/netdata-uninstall>        dest: /etc
+
+    - name: izin tanımlaması yapılıyor
+      file:
+        path: /etc/netdata-uninstaller.sh
+        owner: root
+        group: root
+        mode: '0777'
+
+    - name: kaldırma sağlanıyor
+      become: true
+      shell: /etc/netdata-uninstaller.sh --yes --force --env /opt/netdata/etc/netdata/.environment
